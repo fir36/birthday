@@ -4,91 +4,74 @@
     --glow: #ff66cc;
 }
 
-body {
+body, html {
     margin: 0; padding: 0;
+    color: white; overflow: hidden;
     font-family: 'Arial', sans-serif;
-    background-color: var(--bg-color);
-    color: white;
-    overflow: hidden; /* Keeps the stars as the only background */
 }
 
-#starfield {
-    position: fixed; top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: -1;
-    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
-}
+#starfield { position: fixed; top: 0; z-index: -1; background: #000; }
 
 .view {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    height: 100vh; width: 100vw;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    position: absolute; top: 0; left: 0;
+    transition: opacity 1.5s ease, transform 1.5s ease;
 }
 
-.hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: scale(0.9);
+.hidden { opacity: 0; pointer-events: none; transform: translateY(20px); }
+
+.glow-text { text-shadow: 0 0 15px var(--glow); margin-bottom: 30px; }
+
+/* 🎂 Cake CSS */
+.cake {
+    width: 150px; height: 100px;
+    background: #5d4037; border-radius: 10px 10px 0 0;
+    position: relative; margin: 20px;
+}
+.candle {
+    width: 10px; height: 40px; background: #fff;
+    position: absolute; top: -40px; left: 70px;
+}
+.flame {
+    width: 15px; height: 25px; background: orange;
+    border-radius: 50% 50% 20% 20%;
+    position: absolute; top: -25px; left: -2.5px;
+    box-shadow: 0 0 15px orange;
+    animation: flicker 0.1s infinite alternate;
+    cursor: pointer;
+}
+@keyframes flicker {
+    from { transform: scale(1); } to { transform: scale(1.1); }
 }
 
-/* Login Box */
-.login-box {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 40px;
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
+/* 📸 Netflix Row */
+.netflix-row {
+    display: flex; gap: 20px; overflow-x: auto;
+    width: 90%; padding: 40px;
 }
-
-input {
-    padding: 12px;
-    border-radius: 20px;
-    border: 1px solid var(--accent);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    text-align: center;
-    outline: none;
+.netflix-row img {
+    width: 300px; border-radius: 10px;
+    transition: 0.5s; cursor: pointer;
 }
+.netflix-row img:hover { transform: scale(1.1); }
 
-/* Journey Planest */
-.journey-map { display: flex; gap: 40px; }
-.planet-link { cursor: pointer; text-align: center; transition: 0.3s; }
-.planet-link:hover { transform: translateY(-10px); }
-.planet {
-    width: 100px; height: 100px; border-radius: 50%;
-    margin-bottom: 10px;
-    box-shadow: 0 0 20px var(--glow);
-}
-.purp { background: radial-gradient(circle at 30% 30%, #a29bfe, #6c5ce7); }
-.blue { background: radial-gradient(circle at 30% 30%, #81ecec, #0984e3); }
-.pink { background: radial-gradient(circle at 30% 30%, #fab1a0, #e17055); }
-
-/* Sections */
-.back-btn {
-    position: absolute; top: 20px; left: 20px;
-    background: none; border: 1px solid white; color: white;
-    padding: 10px; cursor: pointer; border-radius: 5px;
-}
-
-.row { display: flex; gap: 20px; overflow-x: auto; width: 80%; padding: 20px; }
-.row img { width: 250px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
-.row img:hover { transform: scale(1.1); }
-
+/* 🎥 Video & Letter */
+video { width: 80%; max-width: 700px; border-radius: 15px; box-shadow: 0 0 30px var(--accent); }
 .letter-box {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 40px; border-radius: 15px;
-    max-width: 600px; text-align: center; line-height: 1.6;
+    background: rgba(255,255,255,0.05); padding: 50px;
+    border-radius: 20px; backdrop-filter: blur(10px);
+    max-width: 500px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
 }
 
-#modal {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center;
-    z-index: 2000;
+/* 🔘 Buttons */
+.next-btn {
+    margin-top: 30px; padding: 15px 40px;
+    background: linear-gradient(45deg, var(--accent), var(--glow));
+    border: none; border-radius: 30px; color: white;
+    cursor: pointer; font-weight: bold;
 }
-#modal img { max-width: 90%; max-height: 90%; }
+
+.music-player { position: fixed; bottom: 20px; right: 20px; z-index: 100; }
+#music-btn { background: rgba(0,0,0,0.6); color: white; border: 1px solid white; padding: 8px; border-radius: 20px; cursor: pointer; }
