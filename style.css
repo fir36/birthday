@@ -16,6 +16,10 @@ body {
 
 .login-box {
   text-align: center;
+  background: rgba(0,0,0,0.6);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
 input {
@@ -37,12 +41,18 @@ input::placeholder {
 }
 
 button {
-  padding: 10px 15px;
-  margin-top: 10px;
+  padding: 10px 20px;
+  margin-top: 15px;
   border: none;
-  background: purple;
+  border-radius: 8px;
+  background: #ff66cc;
   color: white;
+  font-weight: bold;
   cursor: pointer;
+}
+
+button:hover {
+  background: #ff3399;
 }
 
 /* Hidden */
