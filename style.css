@@ -5,179 +5,90 @@
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+    font-family: 'Arial', sans-serif;
     background-color: var(--bg-color);
     color: white;
-    overflow-x: hidden;
+    overflow: hidden; /* Keeps the stars as the only background */
 }
 
-/* Starfield Canvas */
 #starfield {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
     z-index: -1;
     background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
 }
 
-/* Login Page */
-#login-page {
+.view {
     height: 100vh;
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: opacity 1s ease-out;
+    position: absolute;
+    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+/* Login Box */
 .login-box {
-    text-align: center;
     background: rgba(255, 255, 255, 0.05);
-    padding: 50px;
+    padding: 40px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 40px rgba(188, 19, 254, 0.3);
-}
-
-h1 {
-    text-shadow: 0 0 10px var(--glow);
-    margin-bottom: 25px;
+    text-align: center;
 }
 
 input {
-  padding: 15px;
-  width: 250px;
-  border-radius: 30px;
-  border: 1px solid var(--accent);
-  background: rgba(255, 255, 255, 0.1); /* Lighter background */
-  
-  /* THIS IS THE FIX */
-  color: #ffffff !important;  /* Forces text to be white */
-  caret-color: #ff66cc;       /* Makes the blinking cursor pink */
-  
-  text-align: center;
-  font-size: 1.1rem;
-  outline: none;
-  transition: 0.3s;
-}
-
-/* Ensure the placeholder text is visible but slightly faded */
-input::placeholder {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-button {
-    padding: 12px 30px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 30px;
-    background: linear-gradient(45deg, var(--accent), var(--glow));
+    padding: 12px;
+    border-radius: 20px;
+    border: 1px solid var(--accent);
+    background: rgba(0,0,0,0.5);
     color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    text-align: center;
+    outline: none;
 }
 
-button:hover {
-    transform: scale(1.05);
+/* Journey Planest */
+.journey-map { display: flex; gap: 40px; }
+.planet-link { cursor: pointer; text-align: center; transition: 0.3s; }
+.planet-link:hover { transform: translateY(-10px); }
+.planet {
+    width: 100px; height: 100px; border-radius: 50%;
+    margin-bottom: 10px;
     box-shadow: 0 0 20px var(--glow);
 }
+.purp { background: radial-gradient(circle at 30% 30%, #a29bfe, #6c5ce7); }
+.blue { background: radial-gradient(circle at 30% 30%, #81ecec, #0984e3); }
+.pink { background: radial-gradient(circle at 30% 30%, #fab1a0, #e17055); }
 
-#error-msg {
-    color: #ff4d4d;
-    margin-top: 15px;
-    font-size: 0.9rem;
+/* Sections */
+.back-btn {
+    position: absolute; top: 20px; left: 20px;
+    background: none; border: 1px solid white; color: white;
+    padding: 10px; cursor: pointer; border-radius: 5px;
 }
 
-/* Main Content */
-.hidden { display: none !important; }
+.row { display: flex; gap: 20px; overflow-x: auto; width: 80%; padding: 20px; }
+.row img { width: 250px; border-radius: 10px; cursor: pointer; transition: 0.3s; }
+.row img:hover { transform: scale(1.1); }
 
-header {
-    text-align: center;
-    padding: 100px 20px 50px;
+.letter-box {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px; border-radius: 15px;
+    max-width: 600px; text-align: center; line-height: 1.6;
 }
 
-.section {
-    padding: 20px 4%;
-}
-
-h2 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-/* Netflix Style Rows */
-.row {
-    display: flex;
-    gap: 15px;
-    overflow-x: scroll;
-    padding: 20px 0;
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
-
-.row::-webkit-scrollbar { display: none; } /* Hide scrollbar for Chrome */
-
-.row img {
-    width: 280px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.45s;
-}
-
-.row img:hover {
-    transform: scale(1.15);
-    z-index: 10;
-    box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
-
-/* Video Player */
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-video {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 0 30px var(--accent);
-}
-
-/* Lightbox Modal */
 #modal {
-    position: fixed;
-    z-index: 1000;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: fadeIn 0.5s;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.9); display: flex; justify-content: center; align-items: center;
+    z-index: 2000;
 }
-
-#modal img {
-    max-width: 85%;
-    max-height: 85%;
-    border-radius: 5px;
-    box-shadow: 0 0 20px white;
-}
-
-.close-btn {
-    position: absolute;
-    top: 30px; right: 40px;
-    font-size: 40px;
-    cursor: pointer;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+#modal img { max-width: 90%; max-height: 90%; }
