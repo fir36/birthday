@@ -1,75 +1,70 @@
 const correctPassword = "wetogetherforever";
 
-// Password Check & Start
+// 1. Logic to start the journey
 function checkPassword() {
     const input = document.getElementById("password").value;
     if (input === correctPassword) {
-        showSection('main-page');
+        showSection('step-cake');
         document.getElementById("bg-music").play();
-        startTypewriter();
     } else {
-        document.getElementById("error-msg").innerText = "Wrong password, my love ❤️";
+        document.getElementById("error-msg").innerText = "Try again my love ❤️";
     }
 }
 
-// Section Switcher (The core journey logic)
+// 2. Section Switcher
 function showSection(sectionId) {
-    // Hide all views
-    document.querySelectorAll('.view').forEach(view => {
-        view.classList.add('hidden');
-    });
-    // Show the chosen one
+    document.querySelectorAll('.view').forEach(v => v.classList.add('hidden'));
     document.getElementById(sectionId).classList.remove('hidden');
     
-    // Auto-play video if entering video section
+    // Play video if it's the video section
     const video = document.getElementById('main-video');
-    if(sectionId === 'video') video.play(); else video.pause();
+    if (sectionId === 'step-video') video.play(); else video.pause();
 }
 
-// Typewriter
-const message = "Happy Birthday to the girl who owns my universe... 💫";
-let i = 0;
-function startTypewriter() {
-    const el = document.getElementById("typewriter");
-    if (i < message.length) {
-        el.innerHTML += message.charAt(i);
-        i++;
-        setTimeout(startTypewriter, 70);
+// 3. Candle Logic
+document.getElementById('flame').addEventListener('click', function() {
+    this.style.display = 'none'; // Extinguish flame
+    document.getElementById('cake-instruction').innerText = "Wish granted! ✨";
+    document.getElementById('cake-next').classList.remove('hidden');
+});
+
+// 4. Music Controls
+function toggleGlobalMusic() {
+    const music = document.getElementById("bg-music");
+    const btn = document.getElementById("music-btn");
+    if (music.paused) {
+        music.play();
+        btn.innerText = "🎵 Music: ON";
+    } else {
+        music.pause();
+        btn.innerText = "🎵 Music: OFF";
     }
 }
 
-// Modal/Sound logic
-function openModal(src) { document.getElementById("modal").classList.remove("hidden"); document.getElementById("modal-img").src = src; }
-function closeModal() { document.getElementById("modal").classList.add("hidden"); }
-function toggleSound() { 
-    const v = document.getElementById('main-video'); 
-    v.muted = !v.muted;
-    document.querySelector('.sound-toggle').innerText = v.muted ? "Unmute 🔊" : "Mute 🔇";
+function toggleVideoSound() {
+    const video = document.getElementById('main-video');
+    video.muted = !video.muted;
 }
 
-// --- STARFIELD ENGINE ---
+// 5. Starfield Animation (Basic version)
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-let stars = [];
-for (let i = 0; i < 200; i++) {
-    stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 2,
-        speed: Math.random() * 0.5
-    });
-}
+let stars = Array(200).fill().map(() => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    s: Math.random() * 2
+}));
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle = "white";
-    stars.forEach(s => {
+    stars.forEach(st => {
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.arc(st.x, st.y, st.s, 0, Math.PI*2);
         ctx.fill();
-        s.y += s.speed;
-        if (s.y > canvas.height) s.y = 0;
+        st.y += 0.5;
+        if(st.y > canvas.height) st.y = 0;
     });
     requestAnimationFrame(animate);
 }
