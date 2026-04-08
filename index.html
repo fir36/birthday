@@ -18,58 +18,58 @@
         </div>
     </div>
 
-    <div id="main-page" class="view hidden">
-        <header>
-            <h1 id="typewriter"></h1>
-        </header>
-        <div class="journey-map">
-            <div class="planet-link" onclick="showSection('moments')">
-                <div class="planet purp"></div>
-                <p>Our Moments</p>
+    <div id="step-cake" class="view hidden">
+        <div class="cake-container">
+            <h1 class="glow-text">Make a Wish, My Love...</h1>
+            <div class="cake">
+                <div class="candle" id="candle">
+                    <div class="flame" id="flame"></div>
+                </div>
             </div>
-            <div class="planet-link" onclick="showSection('video')">
-                <div class="planet blue"></div>
-                <p>A Special Message</p>
-            </div>
-            <div class="planet-link" onclick="showSection('letter')">
-                <div class="planet pink"></div>
-                <p>My Letter</p>
-            </div>
+            <p class="instruction" id="cake-instruction">Click the flame to blow it out!</p>
+            <button id="cake-next" class="next-btn hidden" onclick="showSection('step-moments')">Next: Our Journey →</button>
         </div>
     </div>
 
-    <div id="moments" class="view hidden">
-        <button class="back-btn" onclick="showSection('main-page')">← Back to Space</button>
-        <h2 class="section-title">Our Galaxy of Memories</h2>
-        <div class="row">
-            <img src="assets/images/1.jpg" onclick="openModal(this.src)">
-            <img src="assets/images/2.jpg" onclick="openModal(this.src)">
-            <img src="assets/images/3.jpg" onclick="openModal(this.src)">
-            <img src="assets/images/4.jpg" onclick="openModal(this.src)">
+    <div id="step-moments" class="view hidden">
+        <h2 class="glow-text">A Galaxy of Memories</h2>
+        <div class="netflix-row">
+            <img src="assets/images/1.jpg" alt="Memory 1">
+            <img src="assets/images/2.jpg" alt="Memory 2">
+            <img src="assets/images/3.jpg" alt="Memory 3">
+            <img src="assets/images/4.jpg" alt="Memory 4">
+            <img src="assets/images/5.jpg" alt="Memory 5">
+            <img src="assets/images/6.jpg" alt="Memory 6">
         </div>
+        <button class="next-btn" onclick="showSection('step-video')">Our Special Video →</button>
     </div>
 
-    <div id="video" class="view hidden">
-        <button class="back-btn" onclick="showSection('main-page')">← Back to Space</button>
-        <div class="video-container">
+    <div id="step-video" class="view hidden">
+        <div class="video-box">
             <video id="main-video" loop muted playsinline>
                 <source src="assets/video/video.mp4" type="video/mp4">
             </video>
-            <button class="sound-toggle" onclick="toggleSound()">Unmute Music 🔊</button>
+            <div class="video-controls">
+                <button onclick="toggleVideoSound()">Toggle Video Sound 🔊</button>
+                <button class="next-btn" onclick="showSection('step-letter')">Finally... →</button>
+            </div>
         </div>
     </div>
 
-    <div id="letter" class="view hidden">
-        <button class="back-btn" onclick="showSection('main-page')">← Back to Space</button>
+    <div id="step-letter" class="view hidden">
         <div class="letter-box">
             <h2>To My Universe...</h2>
-            <p>Write your beautiful birthday message here. Explain how much she means to you and how she lights up your world like the stars above. 💖</p>
-            <p>Happy Birthday, My Love!</p>
+            <div class="letter-content">
+                <p>Happy Birthday, beautiful! 💖</p>
+                <p>From the moment you entered my life, everything became brighter. You are the star I always wished for.</p>
+                <p>I hope this journey through our memories reminded you of how much I love you. Here is to many more years of us against the world.</p>
+                <p>Forever Yours, [Your Name]</p>
+            </div>
         </div>
     </div>
 
-    <div id="modal" class="hidden" onclick="closeModal()">
-        <img id="modal-img">
+    <div class="music-player">
+        <button onclick="toggleGlobalMusic()" id="music-btn">🎵 Music: ON</button>
     </div>
 
     <audio id="bg-music" loop>
