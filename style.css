@@ -49,20 +49,25 @@ h1 {
 }
 
 input {
-    padding: 15px;
-    width: 250px;
-    border-radius: 30px;
-    border: 1px solid var(--accent);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    text-align: center;
-    font-size: 1.1rem;
-    outline: none;
-    transition: 0.3s;
+  padding: 15px;
+  width: 250px;
+  border-radius: 30px;
+  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.1); /* Lighter background */
+  
+  /* THIS IS THE FIX */
+  color: #ffffff !important;  /* Forces text to be white */
+  caret-color: #ff66cc;       /* Makes the blinking cursor pink */
+  
+  text-align: center;
+  font-size: 1.1rem;
+  outline: none;
+  transition: 0.3s;
 }
 
-input:focus {
-    box-shadow: 0 0 15px var(--accent);
+/* Ensure the placeholder text is visible but slightly faded */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
 button {
