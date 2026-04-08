@@ -70,7 +70,8 @@ function initStars() {
 }
 
 function animate() {
-    // This creates a "fading" effect so stars don't leave streaks
+    // This clears the canvas with a solid black so stars don't trail
+    // but the canvas itself is BEHIND the cake because of z-index: 0
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -79,9 +80,8 @@ function animate() {
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         ctx.fill();
-        
-        s.y += s.speed; // Move down
-        if (s.y > canvas.height) s.y = 0; // Loop back to top
+        s.y += s.speed;
+        if (s.y > canvas.height) s.y = 0;
     });
     requestAnimationFrame(animate);
 }
