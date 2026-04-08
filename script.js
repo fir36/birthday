@@ -1,33 +1,34 @@
 const correctPassword = "wetogetherforever";
 
-// 1. Password Protection & Transition
+// Password Check & Start
 function checkPassword() {
     const input = document.getElementById("password").value;
-    const error = document.getElementById("error-msg");
-
     if (input === correctPassword) {
-        const loginPage = document.getElementById("login-page");
-        const mainPage = document.getElementById("main-page");
-        const video = document.getElementById("video");
-        const music = document.getElementById("bg-music");
-
-        loginPage.style.opacity = "0";
-        setTimeout(() => {
-            loginPage.classList.add("hidden");
-            mainPage.classList.remove("hidden");
-            startTypewriter();
-            video.play();
-            music.play().catch(e => console.log("Audio autoplay blocked by browser"));
-        }, 1000);
+        showSection('main-page');
+        document.getElementById("bg-music").play();
+        startTypewriter();
     } else {
-        error.innerText = "Wrong password, try again my love ❤️";
+        document.getElementById("error-msg").innerText = "Wrong password, my love ❤️";
     }
 }
 
-// 2. Typewriter Effect
-const message = "Happy Birthday my love… thank you for being my universe 💫";
-let i = 0;
+// Section Switcher (The core journey logic)
+function showSection(sectionId) {
+    // Hide all views
+    document.querySelectorAll('.view').forEach(view => {
+        view.classList.add('hidden');
+    });
+    // Show the chosen one
+    document.getElementById(sectionId).classList.remove('hidden');
+    
+    // Auto-play video if entering video section
+    const video = document.getElementById('main-video');
+    if(sectionId === 'video') video.play(); else video.pause();
+}
 
+// Typewriter
+const message = "Happy Birthday to the girl who owns my universe... 💫";
+let i = 0;
 function startTypewriter() {
     const el = document.getElementById("typewriter");
     if (i < message.length) {
@@ -37,70 +38,39 @@ function startTypewriter() {
     }
 }
 
-// 3. Image Modal Logic
-function openModal(src) {
-    document.getElementById("modal").classList.remove("hidden");
-    document.getElementById("modal-img").src = src;
+// Modal/Sound logic
+function openModal(src) { document.getElementById("modal").classList.remove("hidden"); document.getElementById("modal-img").src = src; }
+function closeModal() { document.getElementById("modal").classList.add("hidden"); }
+function toggleSound() { 
+    const v = document.getElementById('main-video'); 
+    v.muted = !v.muted;
+    document.querySelector('.sound-toggle').innerText = v.muted ? "Unmute 🔊" : "Mute 🔇";
 }
 
-function closeModal() {
-    document.getElementById("modal").classList.add("hidden");
-}
-
-// 4. Video Sound Toggle
-function toggleSound() {
-    const video = document.getElementById("video");
-    video.muted = !video.muted;
-}
-
-// 5. Starfield Animation Engine
+// --- STARFIELD ENGINE ---
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
 let stars = [];
-const numStars = 200;
-
-class Star {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2;
-        this.speed = Math.random() * 0.5;
-    }
-    draw() {
-        ctx.fillStyle = "white";
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-    }
-    update() {
-        this.y += this.speed;
-        if (this.y > canvas.height) this.y = 0;
-    }
+for (let i = 0; i < 200; i++) {
+    stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2,
+        speed: Math.random() * 0.5
+    });
 }
-
-function initStars() {
-    for (let i = 0; i < numStars; i++) {
-        stars.push(new Star());
-    }
-}
-
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    stars.forEach(star => {
-        star.draw();
-        star.update();
+    ctx.fillStyle = "white";
+    stars.forEach(s => {
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fill();
+        s.y += s.speed;
+        if (s.y > canvas.height) s.y = 0;
     });
     requestAnimationFrame(animate);
 }
-
-initStars();
 animate();
-
-window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
