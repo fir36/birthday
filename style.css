@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: radial-gradient(circle at top, #1a0033, #000);
+  overflow-x: hidden;
+}
+
+/* Login */
+#login-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  text-align: center;
+}
+
+input {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 15px;
+  margin-top: 10px;
+  border: none;
+  background: purple;
+  color: white;
+  cursor: pointer;
+}
+
+/* Hidden */
+.hidden {
+  display: none;
+}
+
+/* Main */
+#main-page {
+  padding: 20px;
+}
+
+/* Netflix style rows */
+.row {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+}
+
+.row img {
+  width: 200px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.row img:hover {
+  transform: scale(1.1);
+}
+
+/* Video */
+video {
+  width: 80%;
+  border-radius: 10px;
+}
+
+/* Modal */
+#modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+/* Typewriter */
+#typewriter {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #ffccff;
+}
