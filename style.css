@@ -40,6 +40,7 @@ body, html {
     display: block;
 }
 
+/* This forces the container to fill the screen and center everything inside it */
 .view {
     position: absolute;
     top: 0;
@@ -48,11 +49,12 @@ body, html {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 10; /* Content layer - sits ABOVE stars */
-    background: transparent !important; /* CRITICAL: Allows stars to show */
-    transition: opacity 0.8s ease;
+    justify-content: center; /* Vertical center */
+    align-items: center;     /* Horizontal center */
+    text-align: center;
+    transition: opacity 1s ease;
+    z-index: 10;
+    background: transparent !important;
 }
 
 /* Make Login Box Title Neon Pink */
@@ -66,50 +68,51 @@ body, html {
     pointer-events: none;
 }
 
-/* Header Positioning */
+/* Fix for the Header specifically */
 .top-title {
-    position: absolute;
-    top: 15%; /* Moves it high up */
+    position: relative; /* Changed from absolute to keep it in the flex flow */
+    margin-bottom: 50px; /* Space between text and cake */
     width: 100%;
-    text-shadow: 0 0 15px var(--glow);
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 /* 🎂 Fixed Pink Cake */
 .cake-container {
-    margin-top: 50px;
-    position: relative;
     display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers the cake horizontally */
     justify-content: center;
+    position: relative;
+    width: 100%;
 }
 
 /* 🎂 THE PINK CAKE FIX */
 .cake {
-    width: 200px; 
-    height: 120px;
-    background-color: var(--pink-cake) !important; /* Solid pink */
-    border-radius: 15px 15px 0 0;
+    width: 250px; 
+    height: 150px;
+    background-color: #ff85a2 !important; 
+    border-radius: 20px 20px 0 0;
     position: relative;
-    z-index: 20; /* Ensures it stays above stars */
-    box-shadow: 0 0 20px rgba(255, 133, 162, 0.5);
-    opacity: 1 !important; /* Prevents transparency */
+    margin: 0 auto; /* Extra insurance for centering */
 }
 
+/* 🕯️ Candle Positioning inside the cake */
+/* We use percentages so they stay centered regardless of screen size */
 .candle {
     width: 10px;
     height: 45px;
-    background: linear-gradient(#fff, #eee);
+    background: #fff;
     position: absolute;
     top: -45px;
     border-radius: 3px;
 }
 
 /* Candle Spacing */
-.c1 { left: 30px; }
-.c2 { left: 80px; }
-.c3 { left: 125px; }
-.c4 { left: 170px; }
-.c5 { left: 215px; }
+.c1 { left: 10%; }
+.c2 { left: 30%; }
+.c3 { left: 50%; transform: translateX(-50%); } /* Perfect middle candle */
+.c4 { left: 70%; }
+.c5 { left: 90%; transform: translateX(-100%); }
 
 .flame {
     width: 16px;
