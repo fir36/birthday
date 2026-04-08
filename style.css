@@ -136,3 +136,54 @@ body, html {
     color: white;
     cursor: pointer;
 }
+
+/* --- Letter & Neon Box --- */
+
+.neon-frame {
+    /* Central positioning and size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px; /* Space for the back button */
+    
+    /* The core neon properties */
+    border: 3px solid #ff00de; /* The main bright pink line */
+    border-radius: 20px;
+    
+    /* The glowing effect (Multiple box-shadow layers) */
+    box-shadow: 
+        0 0 10px #ff00de,   /* Soft pink glow */
+        0 0 20px #ff00de,   /* Medium pink glow */
+        0 0 40px #ff00de,   /* Deep pink glow */
+        inset 0 0 15px #ff00de; /* Inner pink glow */
+        
+    /* Glassmorphism effect for the background */
+    background-color: rgba(255, 255, 255, 0.05); /* Slight transparency */
+    backdrop-filter: blur(10px); /* Blurs the background (stars) slightly */
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.letter-box {
+    /* Styling for the content inside the neon frame */
+    padding: 40px;
+    max-width: 500px;
+    color: white;
+    text-align: center;
+    border-radius: 17px; /* Matches the frame, minus border width */
+}
+
+/* Ensure the title inside the box has the matching neon glow */
+.letter-box h2 {
+    color: #ff00de;
+    text-shadow: 0 0 10px #ff00de;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+/* Optional: Slight color adjustment for the body text */
+.letter-content p {
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+/* --- Letter & Neon Box --- */
