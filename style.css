@@ -1,8 +1,22 @@
 :root {
     --bg-color: #050505;
     --accent: #bc13fe;
-    --glow: #ff66cc;
+    --glow: #ff00de; /* Brighter neon pink */
     --pink-cake: #ff85a2;
+}
+
+/* Fix Global Font Color */
+h1, h2, h3, p, div {
+    color: #ffffff !important; /* Forces all text to be white/bright */
+}
+
+/* Neon Pink Headers */
+.glow-text {
+    color: #fff !important;
+    text-shadow: 
+        0 0 10px var(--glow),
+        0 0 20px var(--glow),
+        0 0 30px var(--glow);
 }
 
 body, html {
@@ -41,14 +55,10 @@ body, html {
     transition: opacity 0.8s ease;
 }
 
-/* Ensure the login box doesn't have a solid background that hides stars */
-.login-box {
-    background: rgba(255, 255, 255, 0.05); /* Semi-transparent */
-    padding: 40px;
-    border-radius: 20px;
-    backdrop-filter: blur(5px); /* This makes it look like glass! */
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
+/* Make Login Box Title Neon Pink */
+.login-box h1 {
+    color: #fff !important;
+    text-shadow: 0 0 15px var(--glow);
 }
 
 .hidden {
@@ -73,13 +83,16 @@ body, html {
     justify-content: center;
 }
 
+/* 🎂 THE PINK CAKE FIX */
 .cake {
-    width: 250px;
-    height: 150px;
-    background: var(--pink-cake);
-    border-radius: 20px 20px 0 0;
+    width: 200px; 
+    height: 120px;
+    background-color: var(--pink-cake) !important; /* Solid pink */
+    border-radius: 15px 15px 0 0;
     position: relative;
-    box-shadow: 0 10px 30px rgba(255, 133, 162, 0.3);
+    z-index: 20; /* Ensures it stays above stars */
+    box-shadow: 0 0 20px rgba(255, 133, 162, 0.5);
+    opacity: 1 !important; /* Prevents transparency */
 }
 
 .candle {
@@ -116,23 +129,19 @@ body, html {
     to { transform: scale(1.1) rotate(2deg); }
 }
 
+/* Make instructions readable */
 .instruction {
-    margin-top: 40px;
-    font-style: italic;
-    color: var(--glow);
+    color: var(--glow) !important;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0,0,0,1); /* Dark outline for readability */
 }
 
-/* Navigation Buttons */
+/* Button glow to match */
 .next-btn {
-    margin-top: 20px;
-    padding: 15px 40px;
-    background: linear-gradient(45deg, var(--accent), var(--glow));
+    background: linear-gradient(45deg, #ff00de, #ff85a2) !important;
+    box-shadow: 0 0 15px var(--glow);
     border: none;
-    border-radius: 30px;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 20px var(--accent);
+    color: white !important;
 }
 
 .nav-btn.back {
