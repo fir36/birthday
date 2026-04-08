@@ -48,15 +48,57 @@ function toggleVideoSound() {
 // Starfield
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth; canvas.height = window.innerHeight;
-let stars = Array(200).fill().map(() => ({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, s: Math.random() * 2 }));
+
+let stars = [];
+const numStars = 400; // Increased for a richer galaxy
+
+function initStars() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    for (let i = 0; i < numStars; i++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 1.5,
+            speed: Math.random() * 0.3 + 0.1,
+            opacity: Math.random(),
+            twinkle: Math.random() * 0.02
+        });
+    }
+}
+
 function animate() {
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = "white";
-    stars.forEach(st => {
-        ctx.beginPath(); ctx.arc(st.x, st.y, st.s, 0, Math.PI*2); ctx.fill();
-        st.y += 0.5; if(st.y > canvas.height) st.y = 0;
+    // We use a very slight trail effect for "moving" stars
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)"; 
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    stars.forEach(s => {
+        // Draw the star
+        ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Move the star (falling slowly)
+        s.y += s.speed;
+        
+        // Twinkle logic
+        s.opacity += s.twinkle;
+        if (s.opacity > 1 || s.opacity < 0.2) s.twinkle *= -1;
+
+        // Reset star if it leaves the bottom
+        if (s.y > canvas.height) {
+            s.y = 0;
+            s.x = Math.random() * canvas.width;
+        }
     });
     requestAnimationFrame(animate);
 }
+
+// Initialize and Start
+initStars();
 animate();
+
+// Adjust if window is resized
+window.addEventListener('resize', initStars);
