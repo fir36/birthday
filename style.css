@@ -208,3 +208,50 @@ body, html {
     margin-bottom: 15px;
 }
 /* --- Letter & Neon Box --- */
+/* --- Optimized Gallery for Phone & Desktop --- */
+.netflix-row {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto; /* Allows horizontal swiping on phone */
+    overflow-y: hidden;
+    width: 95%;      /* Uses more screen width on mobile */
+    padding: 20px 0;
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+    scroll-snap-type: x mandatory; /* Makes swiping feel "snappy" on phones */
+}
+
+.netflix-row::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for Chrome/Safari */
+}
+
+.netflix-row img {
+    /* Responsive sizing */
+    height: 40vh;    /* 40% of the screen height - perfect for phone */
+    width: auto;     /* Maintains aspect ratio so they don't look squashed */
+    border-radius: 12px;
+    border: 2px solid rgba(255, 0, 222, 0.3); /* Subtle neon border */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    scroll-snap-align: center; /* Centers the image when swiping */
+    flex-shrink: 0;  /* Prevents images from shrinking to fit */
+}
+
+/* Add a hover effect for desktop users */
+@media (min-width: 768px) {
+    .netflix-row img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--glow);
+        z-index: 10;
+    }
+}
+
+/* Adjust the title for mobile */
+@media (max-width: 600px) {
+    .glow-text {
+        font-size: 1.5rem; /* Smaller font so it fits on one line */
+        margin-top: 60px;  /* Space for the Back button */
+    }
+    
+    .netflix-row {
+        gap: 10px;
+    }
+}
