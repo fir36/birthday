@@ -19,19 +19,22 @@
     </div>
 
     <div id="step-cake" class="view hidden">
+        <h1 class="glow-text top-title">Make a Wish, My Love...</h1>
         <div class="cake-container">
-            <h1 class="glow-text">Make a Wish, My Love...</h1>
             <div class="cake">
-                <div class="candle" id="candle">
-                    <div class="flame" id="flame"></div>
-                </div>
+                <div class="candle c1"><div class="flame"></div></div>
+                <div class="candle c2"><div class="flame"></div></div>
+                <div class="candle c3"><div class="flame"></div></div>
+                <div class="candle c4"><div class="flame"></div></div>
+                <div class="candle c5"><div class="flame"></div></div>
             </div>
-            <p class="instruction" id="cake-instruction">Click the flame to blow it out!</p>
-            <button id="cake-next" class="next-btn hidden" onclick="showSection('step-moments')">Next: Our Journey →</button>
         </div>
+        <p class="instruction" id="cake-instruction">Click the flames to blow them out!</p>
+        <button id="cake-next" class="next-btn hidden" onclick="showSection('step-moments')">Next: Our Journey →</button>
     </div>
 
     <div id="step-moments" class="view hidden">
+        <button class="nav-btn back" onclick="showSection('step-cake')">← Back</button>
         <h2 class="glow-text">A Galaxy of Memories</h2>
         <div class="netflix-row">
             <img src="assets/images/1.jpg" alt="Memory 1">
@@ -45,6 +48,7 @@
     </div>
 
     <div id="step-video" class="view hidden">
+        <button class="nav-btn back" onclick="showSection('step-moments')">← Back</button>
         <div class="video-box">
             <video id="main-video" loop muted playsinline>
                 <source src="assets/video/video.mp4" type="video/mp4">
@@ -57,12 +61,13 @@
     </div>
 
     <div id="step-letter" class="view hidden">
+        <button class="nav-btn back" onclick="showSection('step-video')">← Back</button>
         <div class="letter-box">
             <h2>To My Universe...</h2>
             <div class="letter-content">
                 <p>Happy Birthday, beautiful! 💖</p>
                 <p>From the moment you entered my life, everything became brighter. You are the star I always wished for.</p>
-                <p>I hope this journey through our memories reminded you of how much I love you. Here is to many more years of us against the world.</p>
+                <p>I hope this journey through our memories reminded you of how much I love you.</p>
                 <p>Forever Yours, [Your Name]</p>
             </div>
         </div>
